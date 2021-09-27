@@ -1,4 +1,5 @@
 <img src="https://workablehr.s3.amazonaws.com/uploads/account/logo/488654/logo">
+
 # 🚀 KOBITON - RSI READER  🚀
 
 
@@ -7,7 +8,7 @@
 - **Easy to use** 🤘
 - **Made with React Native Expo** ⚡
 - **TypeScript supported** 🌞
-- 
+
 ## 🚀 Screenshots & Video Demo
 
 ## 🚀 Functional Requirements
