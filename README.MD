@@ -8,7 +8,7 @@
 - **Easy to use** 🤘
 - **Made with React Native Expo** ⚡
 - **TypeScript supported** 🌞
-- 
+
 ## 🚀 Screenshots & Video Demo
 
 ## 🚀 Functional Requirements
