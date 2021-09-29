@@ -9,7 +9,9 @@ type FollowStackParamsList = {
 export default function HomeStack() {
   const Stack = createNativeStackNavigator<FollowStackParamsList>()
   return(
-    <Stack.Navigator initialRouteName={ROUTES_ENUM.FOLLOW}>
+    <Stack.Navigator screenOptions={{
+      headerShown:false
+    }} initialRouteName={ROUTES_ENUM.FOLLOW}>
       <Stack.Screen name={ROUTES_ENUM.FOLLOW} component={FollowScreen}/>
     </Stack.Navigator>
   )

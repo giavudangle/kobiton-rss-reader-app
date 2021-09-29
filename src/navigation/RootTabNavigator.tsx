@@ -25,17 +25,21 @@ export default function RootTabNavigator() {
   return (
     <Tab.Navigator
       initialRouteName={ROUTE_ENUMS.HOME}   
+      barStyle={{
+        backgroundColor:'#664B9D',
+        margin:-10
+      }}
     >
       <Tab.Screen
         options={() => ({
           tabBarLabel: 'Home',
-          tabBarIcon: () => <Ionicons name='md-home' color='white' size={28} />
+          tabBarIcon: () => <Ionicons name='md-home' color='white' size={24} />
         })}
         name={ROUTE_ENUMS.HOME} component={HomeStack} />
       <Tab.Screen
         options={() => ({
-          tabBarLabel: 'Follow',
-          tabBarIcon: () => <Ionicons name='arrow-down-circle' color='white' size={28} />
+          tabBarLabel: 'Archive',
+          tabBarIcon: () => <Ionicons name='arrow-down-circle' color='white' size={24} />
         })}
         name={ROUTE_ENUMS.FOLLOW} component={FollowStack} />
 

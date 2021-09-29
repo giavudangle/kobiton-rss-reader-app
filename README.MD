@@ -13,10 +13,10 @@
 
 ## 🚀 Functional Requirements
 
-- Allows user to input a RSS URL (eg : vnexpress/tinhte...) and read the content.
-- Can save to read later
-- Pretty UI
-- SSO Login
+- [x] Allows user to input a RSS URL (eg : vnexpress/tinhte...) and read the content (deep linking).
+- [] Can save to read later (Async Storage)
+- [] Pretty UI (Need more design ?)
+- [] SSO Login (Using JWT Protocol. Maybe Firebase Authentication)
 
 
 
@@ -49,6 +49,13 @@ When installation is complete, run it :
 
 ```
 yarn start
+```
+
+Put these rss links into rss-placeholder and search
+```
+RSS Resources : 
+  - https://tinhte.vn/rss
+  - https://tuoitre.vn/rss/tin-moi-nhat.rss
 ```
 
 
