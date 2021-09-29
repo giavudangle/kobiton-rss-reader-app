@@ -28,15 +28,15 @@ const Article = ({ title, description,link,imageUrl }: IArticle) => {
   }
 
   return (
-    <TouchableOpacity style={styles.articleContainer} onPress={handlePressArticle}>  
+    <View style={styles.articleContainer} >  
      <View style={styles.articalContentContainer}>
-        <Text style={styles.articleTitle}>{title}</Text>
+        <Text onPress={handlePressArticle} style={styles.articleTitle}>{title}</Text>
         <Text style={styles.articleDescription}>{description.slice(0,100)}</Text>
       </View>
       <View style={styles.articalImageContainer}>
         <Image style={styles.articalImage} source={{uri: imageUrl == undefined ? default_img : imageUrl}} />
       </View>    
-    </TouchableOpacity>
+    </View>
   )
 }
 
@@ -105,8 +105,11 @@ const Home = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={{zIndex:999}}>
       <Image source={{ uri: default_img }} style={styles.appLogo} />
       <RSSPlaceHolder bullTrap={bullTrap} />
+      </View>
+      
       <ScrollView>
         {data.map((el, idx) => {
           return (
@@ -140,7 +143,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   txtContainer: {
-    backgroundColor: '#5a5e5e',
+    backgroundColor: '#4a4e4e',
     marginVertical: -10,
     paddingVertical: 10,
     width: '90%',
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderRadius: 100,
     color: 'white',
-    paddingLeft: 60
+    paddingLeft: 60,
 
   },
   iconContainer: {
@@ -167,7 +170,8 @@ const styles = StyleSheet.create({
   articalImage: {
     width: '100%',
     height: '50%',
-    borderRadius: 10
+    borderRadius: 10,
+    zIndex:-99
   },
   articleTitle: {
     color: '#333',
