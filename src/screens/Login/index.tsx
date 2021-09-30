@@ -5,6 +5,8 @@ import FeatherIcon from '@expo/vector-icons/Feather'
 import * as GoogleSignIn from 'expo-google-sign-in';
 import { useNavigation } from '@react-navigation/core';
 import ROUTES from '../../navigation/RouteConst';
+import firebase from 'firebase/app'
+import Loading from '../../components/common/Loading';
 
 const { width, height } = Dimensions.get('window')
 
@@ -73,8 +75,12 @@ const Login = () => {
   const navigation = useNavigation<any>()
 
 
-  const handleLogin = () => {
-   
+  const handleLogin = async () => {
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email,password);
+    } catch(e){
+      alert(e)
+    }
   }
 
   const handleSignup = () => {
