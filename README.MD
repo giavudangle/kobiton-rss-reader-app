@@ -52,7 +52,7 @@ When installation is complete, run it :
 ```
 yarn start
 ```
-You must register one account, that save in async storage, so you dont need to login anymore.
+You must register one account (firebase account), that save JWT in async storage, so you dont need to login anymore.
 Put these rss links into rss-placeholder and search
 ```
 RSS Resources : 
