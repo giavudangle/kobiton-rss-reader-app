@@ -58,7 +58,7 @@ Put these rss links into rss-placeholder and search
 RSS Resources : 
   - https://tinhte.vn/rss
   - https://tuoitre.vn/rss/tin-moi-nhat.rss
-  - https://thanhnien.vn/game/tin-tuc-game.rss
+  - https://vietnamnet.vn/rss/kinh-doanh.rss
 ```
 
 

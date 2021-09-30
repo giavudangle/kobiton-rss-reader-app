@@ -1,13 +1,3 @@
-// import React from 'react';
-// import RootNavigation from './src/navigation'
-
-// import Login from './src/screens/Login';
-
-// export default function App() {
-//   return (
-//     <RootNavigation/>
-//   );
-// }
 
 
 import React,{useState,useEffect} from 'react';
@@ -28,16 +18,8 @@ if(!firebase.apps.length){
 }
 
 import {View,ActivityIndicator} from 'react-native'
-const Loading = () => {
-  return (
-    <View style={{flex:1,justifyContent:'center'}}>
-      <ActivityIndicator
-        size="large"
-        color="#359DD4"
-      />
-    </View>
-  )
-}
+import Loading from './src/components/common/Loading';
+
 
 export default function App(){
   // Set an initializing state whilst Firebase connects
@@ -51,6 +33,7 @@ export default function App(){
   }
 
   useEffect(() => {
+    //firebase.auth().signOut(); // signout current account
     const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
     return subscriber; // unsubscribe on unmount
   }, []);

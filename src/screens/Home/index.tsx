@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, Image } from 'react-native'
+import React, { useCallback, useRef, useState } from 'react'
+import { View, Text, SafeAreaView, StyleSheet, Image, Animated, TouchableOpacity } from 'react-native'
 import { ScrollView, TextInput } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { IArticle } from '../../../types'
@@ -8,6 +8,7 @@ import * as _ from 'lodash'
 import { useNavigation } from '@react-navigation/core'
 import ROUTES from '../../navigation/RouteConst'
 import { default_logo } from '../../utils/global'
+import Swipeable from "react-native-gesture-handler/Swipeable";
 
 
 type HomeStackParamsList = {
@@ -22,9 +23,67 @@ interface IArticleProps  {
 
 }
 
+
+
 const Article = ({article,onPressArticle }: IArticleProps) => {
   const {title,description,imageUrl} = article
+  const swipeableRef = useRef(null);
+
+
+  const renderLeftActions = (text : any, color : any, action : any, x : any, progress : any) => {
+    const trans = progress.interpolate({
+      inputRange: [0, 1],
+      outputRange: [x, 0],
+    });
+    return (
+      <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
+        <TouchableOpacity
+          style={[stylesDiff.rightAction, { backgroundColor: color }]}
+          onPress={action}
+        >
+          <Text style={stylesDiff.actionText}>{text}</Text>
+        </TouchableOpacity>
+      </Animated.View>
+    );
+  };
+
+  const SwipeableRightActions = (progress : any) => {
+    return (
+      <View style={{ width: 300,height:300}}>
+       {renderLeftActions(
+          "Watch Later",
+          "#888c8a",
+          handleAddArticleToArchive,
+          10,
+          progress
+        )}
+      </View>
+    )
+    
+  }
+
+  const closeSwipeable = () => {
+    swipeableRef.current.close();
+  }
+
+  const handleAddArticleToArchive=() => {
+    console.log(article)
+    closeSwipeable()
+    // Save to storage here.
+    //
+  }
+  
+
+
+
   return (
+    <Swipeable 
+      friction={2}
+      rightThreshold={20}
+      renderLeftActions={SwipeableRightActions}
+      ref={swipeableRef}
+    >
+
     <View style={styles.articleContainer} >  
      <View style={styles.articalContentContainer}>
         <Text onPress={() => onPressArticle(article.link)} style={styles.articleTitle}>{title}</Text>
@@ -34,6 +93,8 @@ const Article = ({article,onPressArticle }: IArticleProps) => {
         <Image style={styles.articalImage} source={{uri: imageUrl == undefined ? default_logo : imageUrl}} />
       </View>    
     </View>
+    </Swipeable>
+
   )
 }
 
@@ -68,9 +129,9 @@ const Home = () => {
         let articles: IArticle[] = [];
         let items = rss.items;
         const rssLength = rss.items.length;
-        const regexImgPattern = '/(?<=<img src=").*?(?=")/gm';
-        const regexLinkPattern = '/(?<=<a href=").*?(?=")/gm';
-        const regexTextPattern = '/<(?:.|\n)*?>/gm';
+        // const regexImgPattern = '/(?<=<img src=").*?(?=")/gm';
+        // const regexLinkPattern = '/(?<=<a href=").*?(?=")/gm';
+        // const regexTextPattern = '/<(?:.|\n)*?>/gm';
 
         for (let i = 0; i < rssLength; i++) {
           let item = items[i];
@@ -85,7 +146,9 @@ const Home = () => {
           })
         }
         setData(articles);
-      });
+      })
+      .catch(e =>console.log(e))
+
   }
 
 
@@ -206,3 +269,78 @@ const styles = StyleSheet.create({
     marginTop: -10
   }
 })
+
+const stylesDiff = StyleSheet.create({
+  itemContainer: {
+    height: 100,
+    flexDirection: "row",
+    backgroundColor: '#2a2a2a',
+    marginTop: 0,
+    borderRadius: 0,
+    alignItems: "center",
+    marginBottom:2
+  },
+  info: {
+    height: "100%",
+    flexDirection: "column",
+    justifyContent: "flex-start",
+    paddingVertical: 10,
+    width: "75%",
+    marginLeft:16
+
+  },
+  title: {
+    fontSize: 16,
+    width: 200
+  },
+  subText: {
+    fontSize: 13,
+    paddingVertical: 2,
+    color: '#2a2a2a',
+  },
+  rateContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "70%",
+    marginVertical:4
+
+  },
+  rate: {
+    flexDirection: "row",
+    alignItems: "flex-end",
+    paddingBottom: 5,
+  },
+  score: {
+    fontSize: 12,
+    marginLeft: 5,
+    color: '#2a2a2a',
+  },
+  priceContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  price: {
+    fontSize: 14,
+    color: '#2a2a2a',
+  },
+  action: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 5,
+  },
+  rightAction: {
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "row",
+    height: 100,
+    margin:20,
+    borderTopRightRadius:20,
+    borderBottomRightRadius:20,
+  },
+  actionText: {
+    color: "white",
+    fontSize: 11,
+    backgroundColor: "transparent",
+    padding: 5,
+  },
+});
