@@ -4,19 +4,21 @@
 
 
 ## 🚀 Overview
-**RSI READER KOBITON PROJECT**
+**RSI READER KOBITON INTERVIEW PROJECT**
 - **Easy to use** 🤘
 - **Made with React Native Expo** ⚡
 - **TypeScript supported** 🌞
+- **SSO Login with Firebase**
+- **Raw UI coding**
 
 ## 🚀 Screenshots & Video Demo
 
 ## 🚀 Functional Requirements
 
-- [x] Allows user to input a RSS URL (eg : vnexpress/tinhte...) and read the content (deep linking).
+- [x] Allows user to input a RSS URL (eg : vnexpress/tinhte...) and read the content (WebView).
 - [] Can save to read later (Async Storage)
-- [] Pretty UI (Need more design ?)
-- [] SSO Login (Using JWT Protocol. Maybe Firebase Authentication)
+- [x] Pretty UI (Need more design)
+- [x] SSO Login (Maybe Firebase Authentication)
 
 
 
@@ -50,12 +52,13 @@ When installation is complete, run it :
 ```
 yarn start
 ```
-
+You must register one account, that save in async storage, so you dont need to login anymore.
 Put these rss links into rss-placeholder and search
 ```
 RSS Resources : 
   - https://tinhte.vn/rss
   - https://tuoitre.vn/rss/tin-moi-nhat.rss
+  - https://thanhnien.vn/game/tin-tuc-game.rss
 ```
 
 

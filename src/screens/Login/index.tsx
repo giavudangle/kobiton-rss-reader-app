@@ -121,7 +121,8 @@ const Login = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor:'#fff'
   },
   logoContainer: {
     flex: 1 / 3,
