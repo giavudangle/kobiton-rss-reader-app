@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { View, Text, StyleSheet, Image, Dimensions,TouchableOpacity,TextInput } from 'react-native'
+import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, TextInput } from 'react-native'
 import { default_logo } from '../../utils/global'
 import FeatherIcon from '@expo/vector-icons/Feather'
 import * as GoogleSignIn from 'expo-google-sign-in';
 import { useNavigation } from '@react-navigation/core';
-
+import firebase from 'firebase/app'
+import Loading from '../../components/common/Loading';
 const { width, height } = Dimensions.get('window')
 
 interface IFormHolder {
@@ -14,7 +15,7 @@ interface IFormHolder {
   isSecurity: boolean
 }
 
-const FormHolder = ({ placeholder, onChangeText, keyboardType,isSecurity }: IFormHolder) => {
+const FormHolder = ({ placeholder, onChangeText, keyboardType, isSecurity }: IFormHolder) => {
   return (
     <TextInput
       keyboardType={keyboardType}
@@ -27,6 +28,8 @@ const FormHolder = ({ placeholder, onChangeText, keyboardType,isSecurity }: IFor
   )
 }
 
+
+
 interface ICustomButton {
   title: string,
   onPress: () => any,
@@ -38,22 +41,22 @@ const btnStyles = StyleSheet.create({
     backgroundColor: '#fff',
     width: 200,
     height: 60,
-    top:80,
-    borderRadius:90,
-    justifyContent:'center',
-    alignItems:'center'   ,
-    borderWidth:1,
-    borderColor:'#2A2A2A'
+    top: 80,
+    borderRadius: 90,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#2A2A2A'
   },
-  btnText:{
-    fontSize:20,
-    fontWeight:'bold',
-    color:'#359DD4',
-  
+  btnText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#359DD4',
+
   }
 })
 
-const CustomButton = ({title,onPress} : ICustomButton) => {
+const CustomButton = ({ title, onPress }: ICustomButton) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <View style={btnStyles.btnContainer}>
@@ -67,8 +70,9 @@ const CustomButton = ({title,onPress} : ICustomButton) => {
 
 
 const Signup = () => {
-  const [email,setEmail] = useState<string>('');
-  const [password,setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+
   const navigation = useNavigation<any>()
 
 
@@ -76,11 +80,17 @@ const Signup = () => {
     navigation.goBack();
   }
 
-  const handleSignup = () => {
-  
+  const handleSignup = async () => {
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+
+    } catch (e) {
+
+      alert(e)
+    }
   }
 
- 
+
 
   return (
     <View style={styles.container}>
@@ -103,15 +113,15 @@ const Signup = () => {
         />
         <CustomButton
           title="Signup"
-          onPress={handleLogin}
+          onPress={handleSignup}
         />
         <TouchableOpacity onPress={handleLogin}>
-        <Text style={styles.signupText}>Already have an account ?</Text>
+          <Text style={styles.signupText}>Already have an account ?</Text>
 
         </TouchableOpacity>
 
       </View>
-      
+
 
     </View>
   )
@@ -121,7 +131,7 @@ const Signup = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor:'#fff'
+    backgroundColor: '#fff'
 
   },
   logoContainer: {
@@ -160,15 +170,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
 
   },
-  btnContainer:{
+  btnContainer: {
 
   },
-  signupText:{
-    top:110,
-    fontSize:18,
-    fontWeight:'300',
-    color:'#fff',
-    fontStyle:'italic'
+  signupText: {
+    top: 110,
+    fontSize: 18,
+    fontWeight: '300',
+    color: '#fff',
+    fontStyle: 'italic'
   }
 
 })
