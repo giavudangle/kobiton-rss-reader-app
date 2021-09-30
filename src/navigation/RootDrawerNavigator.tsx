@@ -17,7 +17,7 @@ export default function RootDrawerNavigator(){
   const Drawer = createDrawerNavigator();
   return(
     <Drawer.Navigator initialRouteName="RootDrawer" drawerContent={DrawerContent}>
-      <Drawer.Screen name="RootStack" component={RootStackNavigator}/>
+      {/* <Drawer.Screen name="RootStack" component={RootStackNavigator}/> */}
     </Drawer.Navigator>
   )
   

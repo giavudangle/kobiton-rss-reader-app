@@ -1,9 +1,7 @@
-import React, { useCallback, useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
-import { ScrollView, TextInput } from 'react-native-gesture-handler'
-import Ionicons from '@expo/vector-icons/Ionicons'
+import React, { useState } from 'react'
+import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { ScrollView } from 'react-native-gesture-handler'
 import { IArticle } from '../../../types'
-import * as rssParser from 'react-native-rss-parser';
 import * as _ from 'lodash'
 import * as Linking from 'expo-linking'
 
@@ -22,31 +20,32 @@ const mockObject: IArticle = {
 }
 
 
-const Article = ({ title, description,link,imageUrl }: IArticle) => {
+const Article = ({ title, description, link, imageUrl }: IArticle) => {
   const handlePressArticle = () => {
     Linking.openURL(link)
   }
 
   return (
-    <TouchableOpacity style={styles.articleContainer} onPress={handlePressArticle}>  
-     <View style={styles.articalContentContainer}>
+    <TouchableOpacity style={styles.articleContainer} onPress={handlePressArticle}>
+      <View style={styles.articalContentContainer}>
         <Text style={styles.articleTitle}>{title}</Text>
-        <Text style={styles.articleDescription}>{description.slice(0,100)}</Text>
+        <Text style={styles.articleDescription}>{description.slice(0, 100)}</Text>
       </View>
       <View style={styles.articalImageContainer}>
-        <Image style={styles.articalImage} source={{uri: imageUrl == undefined ? default_img : imageUrl}} />
-      </View>    
+        <Image style={styles.articalImage} source={{ uri: imageUrl == undefined ? default_img : imageUrl }} />
+      </View>
     </TouchableOpacity>
   )
 }
 
 
 
+
 const Home = () => {
 
-  const [data,setData] = useState<IArticle[]>([]);
+  const [data, setData] = useState<IArticle[]>([]);
 
-  
+ 
 
   return (
     <SafeAreaView style={styles.container}>
@@ -135,8 +134,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 18,
-    margin:8,
-    
+    margin: 8,
+
 
   },
   articalContentContainer: {
@@ -153,8 +152,8 @@ const styles = StyleSheet.create({
     marginTop: -10
   },
   title: {
-    fontWeight: "bold", 
-    fontSize: 38, 
+    fontWeight: "bold",
+    fontSize: 38,
     marginHorizontal: 10
-},
+  },
 })

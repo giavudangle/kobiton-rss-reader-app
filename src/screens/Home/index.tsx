@@ -1,40 +1,37 @@
 import React, { useCallback, useState } from 'react'
-import { View, Text, SafeAreaView, StyleSheet, Image, TouchableOpacity, TouchableWithoutFeedback } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Image } from 'react-native'
 import { ScrollView, TextInput } from 'react-native-gesture-handler'
 import Ionicons from '@expo/vector-icons/Ionicons'
 import { IArticle } from '../../../types'
 import * as rssParser from 'react-native-rss-parser';
 import * as _ from 'lodash'
-import * as Linking from 'expo-linking'
+import { useNavigation } from '@react-navigation/core'
+import ROUTES from '../../navigation/RouteConst'
+import { default_logo } from '../../utils/global'
 
-const default_img = "https://cdn.jobhopin.com/avatars/08e0929c-36d9-4401-819c-bfa935b6e8df.png"
 
-const rss_url = "https://tuoitre.vn/rss/tin-moi-nhat.rss"
-
-const mockObject: IArticle = {
-  title: 'Từ 1-10, TP.HCM mở cửa những gì?',
-  description: 'TTO - Trong dự thảo chỉ thị về điều chỉnh các biện pháp thích ứng an toàn',
-  published: 'Tue, 28 Sep 2021 11:34:15 GMT+7',
-  imageUrl: 'https://cdn1.tuoitre.vn/zoom/80_50/2021/9/28/img2508-16328012953171948904823-crop-1632801367177199287417.jpg',
-  link: 'https://tuoitre.vn/tu-1-10-tp-hcm-mo-cua-nhung-gi-20210928084737269.htm',
-  id: "testid"
+type HomeStackParamsList = {
+  [ROUTES.HOME]: undefined,
+  [ROUTES.ARTICLE]: undefined,
 
 }
 
+interface IArticleProps  {
+  article : IArticle,
+  onPressArticle : (articleLink : string) => any,
 
-const Article = ({ title, description,link,imageUrl }: IArticle) => {
-  const handlePressArticle = () => {
-    Linking.openURL(link)
-  }
+}
 
+const Article = ({article,onPressArticle }: IArticleProps) => {
+  const {title,description,imageUrl} = article
   return (
     <View style={styles.articleContainer} >  
      <View style={styles.articalContentContainer}>
-        <Text onPress={handlePressArticle} style={styles.articleTitle}>{title}</Text>
-        <Text style={styles.articleDescription}>{description.slice(0,100)}</Text>
+        <Text onPress={() => onPressArticle(article.link)} style={styles.articleTitle}>{title}</Text>
+        <Text style={styles.articleDescription}>{description.slice(0,60)} ...</Text>
       </View>
       <View style={styles.articalImageContainer}>
-        <Image style={styles.articalImage} source={{uri: imageUrl == undefined ? default_img : imageUrl}} />
+        <Image style={styles.articalImage} source={{uri: imageUrl == undefined ? default_logo : imageUrl}} />
       </View>    
     </View>
   )
@@ -54,13 +51,11 @@ const RSSPlaceHolder = ({ bullTrap }: any) => {
     </View>
   )
 }
-interface IFeedActicle {
-  items: IArticle[]
-}
+
 
 const Home = () => {
   const [data, setData] = useState<IArticle[]>([]);
-
+  const navigation = useNavigation<any>();
 
   const handleFeedRSS = (rss: string): Promise<any> => {
     return fetch(rss)
@@ -103,10 +98,14 @@ const Home = () => {
     handlerDebounce(term);
   }
 
+  const _onPressArticle = (articleId : string) => {
+    navigation.navigate(ROUTES.ARTICLE,{articleId})
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{zIndex:999}}>
-      <Image source={{ uri: default_img }} style={styles.appLogo} />
+      <Image source={{ uri: default_logo }} style={styles.appLogo} />
       <RSSPlaceHolder bullTrap={bullTrap} />
       </View>
       
@@ -114,12 +113,8 @@ const Home = () => {
         {data.map((el, idx) => {
           return (
             <Article
-              id={el.id}
-              published={el.published}
-              link={el.link}
-              title={el.title}
-              description={el.description}
-              imageUrl={el.imageUrl}
+              article={el}
+              onPressArticle={_onPressArticle}
             />
           )
         })}

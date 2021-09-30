@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "893087763166",
+    "project_id": "rss-ios",
+    "storage_bucket": "rss-ios.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:893087763166:android:ebb6edfee5c12faf96904f",
+        "android_client_info": {
+          "package_name": "kobiton.rss.reader.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "893087763166-alkim1m6gdu7368eri1pttl4kb51e58r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLxY23mvlad_40pPYwvRq-jX0Ps4hlvs0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "893087763166-alkim1m6gdu7368eri1pttl4kb51e58r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "893087763166-g82ivr9d7cgvvlvstgj38rb28c2pp6e6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "kobiton-rss-reader-app"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

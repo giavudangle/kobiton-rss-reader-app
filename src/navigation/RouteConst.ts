@@ -1,7 +1,10 @@
 enum ROUTES  {
   HOME = "Home",
+  ARTICLE ="Article",
   FOLLOW = "Follow",
-  FEED = "Feed"
+  FEED = "Feed",
+  LOGIN = "Login",
+  SIGNUP = "Signup"
 }
 
 export default ROUTES;

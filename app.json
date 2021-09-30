@@ -17,13 +17,24 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier":"kobiton-rss-reader-app",
+      "config":{
+        "googleSignIn":{
+          "reservedClientId":"com.googleusercontent.apps.893087763166-g82ivr9d7cgvvlvstgj38rb28c2pp6e6"
+        }
+      },
+      "googleServicesFile":"./GoogleService-Info.plist"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "googleServicesFile":"./google-services.json",
+      "package":"kobiton.rss.reader.app"
+      
+
     },
     "web": {
       "favicon": "./assets/favicon.png"
