@@ -18,13 +18,14 @@ if(!firebase.apps.length){
 }
 
 import {View,ActivityIndicator} from 'react-native'
-import Loading from './src/components/common/Loading';
+import Loading from './src/components/Common/Loading';
 
 
 export default function App(){
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<any>(null);
+  
 
   // Handle user state changes
   function onAuthStateChanged(user : any) {
