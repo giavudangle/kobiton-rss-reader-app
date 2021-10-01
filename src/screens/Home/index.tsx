@@ -25,7 +25,7 @@ const Home = () => {
       const json = await rssParser.parse(responseData)
       // const descExp = new RegExp(/<(?:.|\n)*?>/gm)
       // const imgExp = new RegExp(/(?<=<img src=").*?(?=")/gm)
-
+      console.log(json)
 
       let articles: IArticle[] = []
       let items = json.items
