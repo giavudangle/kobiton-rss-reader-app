@@ -56,6 +56,9 @@ You must register one account, that save in async storage, so you dont need to l
 Put a rss links into rss-placeholder and submit
 
 ```
-RSS Resources :  https://tuoitre.vn/rss/tin-moi-nhat.rss
+RSS Resources :  
+https://baotintuc.vn/kinh-te.rss
+https://tuoitre.vn/rss/tin-moi-nhat.rss
+https://vietnamnet.vn/rss/kinh-doanh.rss
 ```
 
