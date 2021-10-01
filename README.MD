@@ -11,7 +11,7 @@
 - **Raw UI coding**
 
 ## 🚀 Screenshots 
-<div style="display:flex;justify-content:center;flex-wrap:wrap;align-items:center">
+<div style="display:flex;justify-content:center;flex-wrap:wrap;">
 
 <img src='./src/assets/screenshots/1.png'>
 <img src='./src/assets/screenshots/2.png'>
@@ -19,7 +19,6 @@
 <img src='./src/assets/screenshots/4.png'>
 <img src='./src/assets/screenshots/5.png'>
 <img src='./src/assets/screenshots/6.png'>
-<img src='./src/assets/screenshots/7.png'>
 </div>
 ## 🚀 Functional Requirements
 
