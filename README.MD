@@ -19,7 +19,8 @@
 <img src='./src/assets/screenshots/4.png'>
 <img src='./src/assets/screenshots/5.png'>
 <img src='./src/assets/screenshots/6.png'>
-</div>
+</div
+  
 ## 🚀 Functional Requirements
 
 - [x] Allows user to input a RSS URL (eg : vnexpress/tinhte...) and read the content (WebView).
