@@ -1,9 +1,9 @@
 import React from 'react';
-import ROUTES_ENUM from '../RouteConst';
+import {ROUTES} from '../RouteConst';
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import FollowScreen from '../../screens/Follow'
+import ArchiveScreen from '../../screens/Archive'
 type FollowStackParamsList = {
-  [ROUTES_ENUM.FOLLOW]: undefined
+  [ROUTES.ARCHIVE]: undefined
 }
 
 export default function HomeStack() {
@@ -11,8 +11,8 @@ export default function HomeStack() {
   return(
     <Stack.Navigator screenOptions={{
       headerShown:false
-    }} initialRouteName={ROUTES_ENUM.FOLLOW}>
-      <Stack.Screen name={ROUTES_ENUM.FOLLOW} component={FollowScreen}/>
+    }} initialRouteName={ROUTES.ARCHIVE}>
+      <Stack.Screen name={ROUTES.ARCHIVE} component={ArchiveScreen}/>
     </Stack.Navigator>
   )
 }
