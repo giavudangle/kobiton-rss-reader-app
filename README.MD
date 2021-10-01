@@ -7,8 +7,8 @@
 - **Easy to use** 🤘
 - **Made with React Native Expo** ⚡
 - **TypeScript supported** 🌞
-- **SSO Login with Firebase**
-- **Raw UI coding**
+- **SSO Login with Firebase** 😈
+- **Raw UI coding** 👐
 
 ## 🚀 Screenshots 
 <div style="display:flex;justify-content:center;flex-wrap:wrap;">
