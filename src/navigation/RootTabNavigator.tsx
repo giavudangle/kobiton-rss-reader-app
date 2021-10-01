@@ -1,7 +1,7 @@
 import React from 'react';
 import { BottomTabNavigationOptions, BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { View, Text } from 'react-native';
-import ROUTE_ENUMS from './RouteConst'
+import {ROUTES,TAB_ROUTES} from './RouteConst'
 
 import Ionicons from '@expo/vector-icons/Ionicons'
 
@@ -9,7 +9,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 
 
 import HomeStack from './StackOfScreens/HomeStack';
-import FollowStack from './StackOfScreens/FollowStack';
+import ArchiveStack from './StackOfScreens/ArchiveStack';
 
 
 const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
@@ -24,7 +24,7 @@ export default function RootTabNavigator() {
   const Tab = createMaterialBottomTabNavigator();
   return (
     <Tab.Navigator
-      initialRouteName={ROUTE_ENUMS.HOME}   
+      initialRouteName={TAB_ROUTES.ROOT_TAB}   
       barStyle={{
         backgroundColor:'#664B9D',
         margin:-10
@@ -35,13 +35,13 @@ export default function RootTabNavigator() {
           tabBarLabel: 'Home',
           tabBarIcon: () => <Ionicons name='md-home' color='white' size={24} />
         })}
-        name={ROUTE_ENUMS.HOME} component={HomeStack} />
+        name={TAB_ROUTES.HOME_TAB} component={HomeStack} />
       <Tab.Screen
         options={() => ({
           tabBarLabel: 'Archive',
           tabBarIcon: () => <Ionicons name='arrow-down-circle' color='white' size={24} />
         })}
-        name={ROUTE_ENUMS.FOLLOW} component={FollowStack} />
+        name={TAB_ROUTES.ARCHIVE_TAB} component={ArchiveStack} />
 
     </Tab.Navigator>
   )

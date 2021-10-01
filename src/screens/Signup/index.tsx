@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image, Dimensions, TouchableOpacity, TextInput } from 'react-native'
-import { default_logo } from '../../utils/global'
+import { DEFAULT_LOGO } from '../../utils/global'
 import FeatherIcon from '@expo/vector-icons/Feather'
 import * as GoogleSignIn from 'expo-google-sign-in';
 import { useNavigation } from '@react-navigation/core';
 import firebase from 'firebase/app'
-import Loading from '../../components/common/Loading';
+import Loading from '../../components/Common/Loading';
 const { width, height } = Dimensions.get('window')
 
 interface IFormHolder {
@@ -95,7 +95,7 @@ const Signup = () => {
   return (
     <View style={styles.container}>
       <View style={styles.logoContainer}>
-        <Image source={{ uri: default_logo }} style={styles.logo} />
+        <Image source={{ uri: DEFAULT_LOGO }} style={styles.logo} />
       </View>
       <View style={styles.formContainer}>
         <Text style={styles.ssoText}>SSO SIGNUP</Text>

@@ -1,10 +1,16 @@
 enum ROUTES  {
   HOME = "Home",
   ARTICLE ="Article",
-  FOLLOW = "Follow",
+  ARCHIVE = "ARCHIVE",
   FEED = "Feed",
   LOGIN = "Login",
   SIGNUP = "Signup"
 }
 
-export default ROUTES;
+enum TAB_ROUTES {
+  ROOT_TAB = 'RootTab',
+  HOME_TAB = 'HomeTab',
+  ARCHIVE_TAB ='ArchiveTab'
+}
+
+export {ROUTES,TAB_ROUTES}
