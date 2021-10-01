@@ -17,20 +17,20 @@ type HomeStackParamsList = {
 
 }
 
-interface IArticleProps  {
-  article : IArticle,
-  onPressArticle : (articleLink : string) => any,
+interface IArticleProps {
+  article: IArticle,
+  onPressArticle: (articleLink: string) => any,
 
 }
 
 
 
-const Article = ({article,onPressArticle }: IArticleProps) => {
-  const {title,description,imageUrl} = article
-  const swipeableRef = useRef(null);
+const Article = ({ article, onPressArticle }: IArticleProps) => {
+  const { title, description, imageUrl } = article
+  const swipeableRef = useRef<null | any>(null);
 
 
-  const renderLeftActions = (text : any, color : any, action : any, x : any, progress : any) => {
+  const renderLeftActions = (text: any, color: any, action: any, x: any, progress: any) => {
     const trans = progress.interpolate({
       inputRange: [0, 1],
       outputRange: [x, 0],
@@ -47,10 +47,10 @@ const Article = ({article,onPressArticle }: IArticleProps) => {
     );
   };
 
-  const SwipeableRightActions = (progress : any) => {
+  const SwipeableRightActions = (progress: any) => {
     return (
-      <View style={{ width: 300,height:300}}>
-       {renderLeftActions(
+      <View style={{ width: 300, height: 300 }}>
+        {renderLeftActions(
           "Watch Later",
           "#888c8a",
           handleAddArticleToArchive,
@@ -59,46 +59,52 @@ const Article = ({article,onPressArticle }: IArticleProps) => {
         )}
       </View>
     )
-    
+
   }
 
   const closeSwipeable = () => {
     swipeableRef.current.close();
   }
 
-  const handleAddArticleToArchive=() => {
+  const handleAddArticleToArchive = () => {
     console.log(article)
     closeSwipeable()
     // Save to storage here.
     //
   }
-  
+
 
 
 
   return (
-    <Swipeable 
+    <Swipeable
       friction={2}
       rightThreshold={20}
       renderLeftActions={SwipeableRightActions}
       ref={swipeableRef}
     >
 
-    <View style={styles.articleContainer} >  
-     <View style={styles.articalContentContainer}>
-        <Text onPress={() => onPressArticle(article.link)} style={styles.articleTitle}>{title}</Text>
-        <Text style={styles.articleDescription}>{description.slice(0,60)} ...</Text>
+      <View style={styles.articleContainer} >
+        <View style={styles.articalContentContainer}>
+          <Text onPress={() => onPressArticle(article.link)} style={styles.articleTitle}>{title}</Text>
+          <Text style={styles.articleDescription}>{description.slice(0, 60)} ...</Text>
+        </View>
+        <View style={styles.articalImageContainer}>
+          <Image style={styles.articalImage} source={{ uri: imageUrl == undefined ? default_logo : imageUrl }} />
+        </View>
       </View>
-      <View style={styles.articalImageContainer}>
-        <Image style={styles.articalImage} source={{uri: imageUrl == undefined ? default_logo : imageUrl}} />
-      </View>    
-    </View>
     </Swipeable>
 
   )
 }
 
-const RSSPlaceHolder = ({ bullTrap }: any) => {
+interface IRSSPlaceHolder {
+  searchTerm : string,
+  setSetTerm : any,
+  onTermSubmit : any
+}
+
+const RSSPlaceHolder = ({ searchTerm,setSetTerm,onTermSubmit }: IRSSPlaceHolder) => {
   return (
     <View style={styles.placeholderContainer}>
       <Ionicons style={styles.iconContainer} name='search' color='white' size={28} />
@@ -106,8 +112,19 @@ const RSSPlaceHolder = ({ bullTrap }: any) => {
         style={styles.txtContainer}
         placeholder="Push RSI link here "
         placeholderTextColor='white'
-        onChangeText={bullTrap}
+        onChangeText={t => setSetTerm(t)}
+        onEndEditing={onTermSubmit}
+        value={searchTerm}
       />
+      <Ionicons 
+        onPress={() => setSetTerm('')}
+        style={{
+          display: searchTerm.length > 0 ? 'flex' : 'none',
+          position: 'absolute',
+          right: 34,
+          zIndex: 99
+        }} name='backspace' color='white' size={24} />
+
 
     </View>
   )
@@ -118,60 +135,55 @@ const Home = () => {
   const [data, setData] = useState<IArticle[]>([]);
   const navigation = useNavigation<any>();
 
-  const handleFeedRSS = (rss: string): Promise<any> => {
-    return fetch(rss)
-      .then((response) => response.text())
-      .then((responseData) => rssParser.parse(responseData))
-      .then((rss) => {
-        console.log(rss)
-        console.log(rss.title);
-        console.log(rss.items.length);
-        let articles: IArticle[] = [];
-        let items = rss.items;
-        const rssLength = rss.items.length;
-        // const regexImgPattern = '/(?<=<img src=").*?(?=")/gm';
-        // const regexLinkPattern = '/(?<=<a href=").*?(?=")/gm';
-        // const regexTextPattern = '/<(?:.|\n)*?>/gm';
-
-        for (let i = 0; i < rssLength; i++) {
-          let item = items[i];
-          articles.push({
-            title: item.title,
-            link: item.links[0].url,
-            published: item.published,
-            description: item.description.replace(/<(?:.|\n)*?>/gm, ''),
-            id: item.id,
-            imageUrl: item.description.match(/(?<=<img src=").*?(?=")/gm)?.toString() 
-            
-          })
-        }
-        setData(articles);
-      })
-      .catch(e =>console.log(e))
-
+  const handleFeedRSS = async (): Promise<any> => {
+    try {
+      const response = await fetch(term)
+      const responseData = await response.text()
+      const json = await rssParser.parse(responseData)
+      let articles: IArticle[] = []
+      let items = json.items
+      for (let i = 0; i < json.items.length; i++) {
+        let item = items[i]
+        articles.push({
+          title: item.title,
+          link: item.links[0].url.trim() ,
+          published: item.published,
+          description: item.description.replace(/<(?:.|\n)*?>/gm, ''),
+          id: item.id,
+          imageUrl: item.description.match(/(?<=<img src=").*?(?=")/gm)?.toString()  
+        })
+      }
+      setData(articles)
+    } catch (e) {
+      return console.log(e)
+    }
   }
 
 
 
+  const [term,setTerm] = useState<string>('');
 
-  const handlerDebounce = useCallback(_.debounce(handleFeedRSS, 2000), []);
 
-  const bullTrap = (term: string) => {
+  const handlerDebounce = useCallback(_.debounce(handleFeedRSS, 500), []);
 
-    handlerDebounce(term);
+
+
+  const _onPressArticle = (articleId: string) => {
+    navigation.navigate(ROUTES.ARTICLE, { articleId })
   }
 
-  const _onPressArticle = (articleId : string) => {
-    navigation.navigate(ROUTES.ARTICLE,{articleId})
-  }
-
+  console.log(term)
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{zIndex:999}}>
-      <Image source={{ uri: default_logo }} style={styles.appLogo} />
-      <RSSPlaceHolder bullTrap={bullTrap} />
+      <View style={{ zIndex: 999 }}>
+        <Image source={{ uri: default_logo }} style={styles.appLogo} />
+        <RSSPlaceHolder  
+        onTermSubmit={handleFeedRSS}
+        searchTerm={term}
+        setSetTerm={setTerm} 
+        />
       </View>
-      
+
       <ScrollView>
         {data.map((el, idx) => {
           return (
@@ -229,7 +241,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '50%',
     borderRadius: 10,
-    zIndex:-99
+    zIndex: -99
   },
   articleTitle: {
     color: '#333',
@@ -251,8 +263,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     padding: 18,
-    margin:8,
-    
+    margin: 8,
+
 
   },
   articalContentContainer: {
@@ -267,6 +279,11 @@ const styles = StyleSheet.create({
     height: 100,
     alignSelf: 'center',
     marginTop: -10
+  },
+  closeIconContainer: {
+    position: 'absolute',
+    right: 34,
+    zIndex: 99
   }
 })
 
@@ -278,7 +295,7 @@ const stylesDiff = StyleSheet.create({
     marginTop: 0,
     borderRadius: 0,
     alignItems: "center",
-    marginBottom:2
+    marginBottom: 2
   },
   info: {
     height: "100%",
@@ -286,7 +303,7 @@ const stylesDiff = StyleSheet.create({
     justifyContent: "flex-start",
     paddingVertical: 10,
     width: "75%",
-    marginLeft:16
+    marginLeft: 16
 
   },
   title: {
@@ -302,7 +319,7 @@ const stylesDiff = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "70%",
-    marginVertical:4
+    marginVertical: 4
 
   },
   rate: {
@@ -333,9 +350,9 @@ const stylesDiff = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     height: 100,
-    margin:20,
-    borderTopRightRadius:20,
-    borderBottomRightRadius:20,
+    margin: 20,
+    borderTopRightRadius: 20,
+    borderBottomRightRadius: 20,
   },
   actionText: {
     color: "white",
