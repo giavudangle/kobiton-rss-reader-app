@@ -23,8 +23,6 @@ const Home = () => {
       const response = await fetch(term)
       const responseData = await response.text()
       const json = await rssParser.parse(responseData)
-      // const descExp = new RegExp(/<(?:.|\n)*?>/gm)
-      // const imgExp = new RegExp(/(?<=<img src=").*?(?=")/gm)
       console.log(json)
 
       let articles: IArticle[] = []
@@ -32,6 +30,7 @@ const Home = () => {
       for (let i = 0; i < json.items.length; i++) {
         let item = items[i]
         let temp = item.description.trim().replace(/["']/g, "\"")
+        console.log(temp.match(/(src=").*?(?=")/gm)?.toString())
 
         articles.push({
           title: item.title,
@@ -39,7 +38,8 @@ const Home = () => {
           published: item.published,
           description: temp.replace(/<(?:.|\n)*?>/gm,'')?.toString() as any,
           id: uuid.v4().toString(),
-          imageUrl:  temp.match(/(?<=<img src=").*?(?=")/gm)?.toString()
+          imageUrl:  temp.match(/(src=").*?(?=")/gm)?.toString().replace(`src=\"`,'')
+
         })
       }
       setData(articles)

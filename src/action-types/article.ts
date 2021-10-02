@@ -1,1 +1,0 @@
-export const FEED_ARTICLE = "FEED_ARTICLE"

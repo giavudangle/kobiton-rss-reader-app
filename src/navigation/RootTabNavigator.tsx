@@ -1,5 +1,4 @@
 import React from 'react';
-import { BottomTabNavigationOptions, BottomTabBarProps, createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { View, Text } from 'react-native';
 import {ROUTES,TAB_ROUTES} from './RouteConst'
 
@@ -12,13 +11,7 @@ import HomeStack from './StackOfScreens/HomeStack';
 import ArchiveStack from './StackOfScreens/ArchiveStack';
 
 
-const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) => {
-  return (
-    <View style={{ flex: 1 }}>
-      <Text>HELLO</Text>
-    </View>
-  )
-}
+
 
 export default function RootTabNavigator() {
   const Tab = createMaterialBottomTabNavigator();
@@ -27,7 +20,6 @@ export default function RootTabNavigator() {
       initialRouteName={TAB_ROUTES.ROOT_TAB}   
       barStyle={{
         backgroundColor:'#664B9D',
-        margin:-10
       }}
     >
       <Tab.Screen

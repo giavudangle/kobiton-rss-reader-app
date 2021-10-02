@@ -28,6 +28,15 @@
 - [x] Pretty UI (Need more design)
 - [x] SSO Login - Register (Firebase Authentication)
 
+## 🚀 Testing
+```
+Get list IOS Simulators CMD : 
+xcrun simctl list devices
+Run simulator with UDIDs :
+xcrun simctl boot <UDIDs>
+```
+
+
 ## 🚀 Installation and Usage
 
 Be sure, you have installed all dependencies and applications to run Expo project on your computer : [Getting Started with Expo](https://docs.expo.io/get-started/installation/).
@@ -68,7 +77,6 @@ Put these rss links into rss-placeholder and submit
 RSS Resources :  
 https://vnexpress.net/rss/thoi-su.rss
 https://baotintuc.vn/kinh-te.rss
-https://tuoitre.vn/rss/tin-moi-nhat.rss
-https://vietnamnet.vn/rss/kinh-doanh.rss
+https://baodautu.vn/dau-tu.rss
 ```
 

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { View, Text, StyleSheet, Image, Dimensions,TouchableOpacity,TextInput } from 'react-native'
 import { DEFAULT_LOGO } from '../../utils/global'
 import FeatherIcon from '@expo/vector-icons/Feather'
-import * as GoogleSignIn from 'expo-google-sign-in';
 import { useNavigation } from '@react-navigation/core';
 import {ROUTES} from '../../navigation/RouteConst';
 import firebase from 'firebase/app'
@@ -41,7 +40,7 @@ const btnStyles = StyleSheet.create({
     backgroundColor: '#fff',
     width: 200,
     height: 60,
-    top:80,
+    top:30,
     borderRadius:90,
     justifyContent:'center',
     alignItems:'center'   ,
@@ -170,7 +169,7 @@ const styles = StyleSheet.create({
 
   },
   signupText:{
-    top:110,
+    top:40,
     fontSize:18,
     fontWeight:'300',
     color:'#fff',
@@ -182,12 +181,13 @@ const styles = StyleSheet.create({
 const formStyles = StyleSheet.create({
   formContainer: {
     backgroundColor: '#fff',
-    width: '90%',
-    height: '10%',
+    width: 350,
+    height: 60,
     marginVertical: 20,
     borderRadius: 90,
     padding: 20,
-    top: 50
+    top: 10,
+    
   }
 })
 
