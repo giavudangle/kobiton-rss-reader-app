@@ -38,7 +38,7 @@ const Article = ({ article, onPressArticle }: IArticleProps) => {
 
   const SwipeableRightActions = (progress: any) => {
     return (
-      <View style={{ width: 220, height: 300 }}>
+      <View style={{ width: 220, height: 340 }}>
         {renderLeftActions(
           "Archive",
           "#664B9D",

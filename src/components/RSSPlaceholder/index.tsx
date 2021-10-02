@@ -6,8 +6,7 @@ import { IArticle } from '../../../types'
 import * as rssParser from 'react-native-rss-parser';
 import * as _ from 'lodash'
 import { useNavigation } from '@react-navigation/core'
-import ROUTES from '../../navigation/RouteConst'
-import { default_logo } from '../../utils/global'
+import {ROUTES} from '../../navigation/RouteConst'
 import Swipeable from "react-native-gesture-handler/Swipeable";
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import Article from '../../components/Article'
@@ -39,7 +38,7 @@ const RSSPlaceHolder = ({ searchTerm, setSetTerm, onTermSubmit }: IRSSPlaceHolde
           display: searchTerm.length > 0 ? 'flex' : 'none',
           position: 'absolute',
           right: 34,
-          zIndex: 99
+          zIndex: 999
         }} name='backspace' color='white' size={24} />
     </View>
   )
@@ -59,6 +58,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'center',
+    
   },
   txtContainer: {
     backgroundColor: '#4a4e4e',
@@ -70,6 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     color: 'white',
     paddingLeft: 60,
+    paddingRight:60
 
   },
   iconContainer: {

@@ -41,7 +41,7 @@ const btnStyles = StyleSheet.create({
     backgroundColor: '#fff',
     width: 200,
     height: 60,
-    top: 80,
+    top: 30,
     borderRadius: 90,
     justifyContent: 'center',
     alignItems: 'center',
@@ -131,8 +131,7 @@ const Signup = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff'
-
+    backgroundColor:'#fff'
   },
   logoContainer: {
     flex: 1 / 3,
@@ -170,15 +169,15 @@ const styles = StyleSheet.create({
     marginTop: 20,
 
   },
-  btnContainer: {
+  btnContainer:{
 
   },
-  signupText: {
-    top: 110,
-    fontSize: 18,
-    fontWeight: '300',
-    color: '#fff',
-    fontStyle: 'italic'
+  signupText:{
+    top:40,
+    fontSize:18,
+    fontWeight:'300',
+    color:'#fff',
+    fontStyle:'italic'
   }
 
 })
@@ -186,12 +185,13 @@ const styles = StyleSheet.create({
 const formStyles = StyleSheet.create({
   formContainer: {
     backgroundColor: '#fff',
-    width: '90%',
-    height: '10%',
+    width: 350,
+    height: 60,
     marginVertical: 20,
     borderRadius: 90,
     padding: 20,
-    top: 50
+    top: 10,
+    
   }
 })
 
