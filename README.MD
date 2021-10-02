@@ -12,13 +12,12 @@
 
 ## 🚀 Screenshots 
 <div style="display:flex;justify-content:center;flex-wrap:wrap;">
-
-<img src='./src/assets/screenshots/1.png'>
-<img src='./src/assets/screenshots/2.png'>
-<img src='./src/assets/screenshots/3.png'>
-<img src='./src/assets/screenshots/4.png'>
-<img src='./src/assets/screenshots/5.png'>
-<img src='./src/assets/screenshots/6.png'>
+<img style="width:40%;height:80%" src='./src/assets/screenshots/1.png'>
+<img style="width:40%;height:80%" src='./src/assets/screenshots/2.png'>
+<img style="width:40%;height:80%" src='./src/assets/screenshots/3.png'>
+<img style="width:40%;height:80%" src='./src/assets/screenshots/4.png'>
+<img style="width:40%;height:80%" src='./src/assets/screenshots/5.png'>
+<img style="width:40%;height:80%" src='./src/assets/screenshots/6.png'>
 </div
   
 ## 🚀 Functional Requirements
