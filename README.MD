@@ -1,9 +1,8 @@
 <img src="https://workablehr.s3.amazonaws.com/uploads/account/logo/488654/logo">
 
-# 🚀 KOBITON - RSS READER APP  🚀
+# 🚀 KOBITON - RSS READER APP - INTERVIEW PROJECT  🚀
 
 ## 🚀 Overview
-**RSS READER KOBITON INTERVIEW PROJECT**
 - **Easy to use** 🤘
 - **Made with React Native Expo** ⚡
 - **TypeScript supported** 🌞
