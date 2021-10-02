@@ -28,7 +28,7 @@
 - [x] Pretty UI (Need more design)
 - [x] SSO Login - Register (Firebase Authentication)
 
-## 🚀 Comm
+## 🚀 Commands
 ```
 Get list IOS Simulators CMD : 
 xcrun simctl list devices
