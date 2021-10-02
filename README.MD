@@ -28,7 +28,7 @@
 - [x] Pretty UI (Need more design)
 - [x] SSO Login - Register (Firebase Authentication)
 
-## 🚀 Testing
+## 🚀 Comm
 ```
 Get list IOS Simulators CMD : 
 xcrun simctl list devices
@@ -41,9 +41,13 @@ xcrun simctl boot <UDIDs>
 
 Be sure, you have installed all dependencies and applications to run Expo project on your computer : [Getting Started with Expo](https://docs.expo.io/get-started/installation/).
 
+## 🚀 Testing
+
 This project works fine on iOS and Android.
 - Tested on IOS Simulator Iphone XS Max
 - Tested on Android Emulator Pixel 2
+- Tested on Iphone 12 Pro Max
+- Tested on Iphone 8 Plus
 ### Running the project
 
 Clone this repository :
