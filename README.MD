@@ -3,7 +3,7 @@
 # 🚀 KOBITON - RSS READER APP  🚀
 
 ## 🚀 Overview
-**RSI READER KOBITON INTERVIEW PROJECT**
+**RSS READER KOBITON INTERVIEW PROJECT**
 - **Easy to use** 🤘
 - **Made with React Native Expo** ⚡
 - **TypeScript supported** 🌞
