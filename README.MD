@@ -43,7 +43,7 @@ Be sure, you have installed all dependencies and applications to run Expo projec
 
 This project works fine on iOS and Android.
 - Tested on IOS Simulator Iphone XS Max
-
+- Tested on Android Emulator Pixel 2
 ### Running the project
 
 Clone this repository :
