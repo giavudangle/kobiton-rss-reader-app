@@ -18,7 +18,7 @@ if(!firebase.apps.length){
 }
 
 import {View,ActivityIndicator} from 'react-native'
-import Loading from './src/components/Common/Loading';
+import Loading from './src/components/common/Loading';
 
 
 export default function App(){
